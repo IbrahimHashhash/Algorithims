@@ -1,0 +1,109 @@
+.button {
+-fx-border-color: rgba(42, 79, 139,1);
+-fx-background-color: rgb(224, 242, 249);
+-fx-border-width: 3.5px;
+-fx-text-fill: rgba(42, 79, 139, 1);
+-fx-font-weight: bold;
+-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0.5, 1, 1);
+-fx-pref-width:260px;
+-fx-pref-height:100px;
+-fx-font-size: 32px;
+-fx-transition: all 2s ease;
+-fx-opacity: 0.8;
+}
+#title {
+-fx-text-fill: rgba(42, 79, 139,1);
+-fx-font-weight: bold;
+-fx-font-size: 45px;
+}
+#guide {
+-fx-text-fill: rgba(42, 79, 139,1);
+-fx-font-weight: bold;
+-fx-font-size: 20px;
+-fx-font-style: italic;
+
+}
+.label {
+-fx-text-fill: rgba(42, 79, 139,1);
+-fx-font-weight: bold;
+-fx-font-size: 50px;
+-fx-font-style: italic;
+
+}
+.coin-label {
+-fx-border-color: rgba(42, 79, 139,1);
+-fx-background-color: rgb(224, 242, 249);
+-fx-border-width: 1px;
+-fx-text-fill: rgba(42, 79, 139, 1);
+-fx-font-weight: bold;
+-fx-background-radius: 30px;
+-fx-border-radius: 30px;
+-fx-padding-left: 10px;
+-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0.5, 1, 1);
+-fx-pref-width:60px;
+-fx-pref-height:60px;
+-fx-font-size: 20px;
+-fx-transition: all 2s ease;
+-fx-opacity: 0.9;
+}
+
+.coin-label: hover {
+    -fx-opacity: 1;
+    -fx-background-color: rgb(197, 158, 1);
+    -fx-border-color: yellow;
+    -fx-effect: dropshadow(gaussian, rgba(42, 79, 139,0.1), 10, 0.5, 1, 1);
+    -fx-text-fill: yellow;
+
+}
+
+.coin-label:pressed {
+-fx-opacity: 0.6;
+-fx-border-color: rgba(42, 79, 139,0.1);
+
+}
+
+.button:hover {
+    -fx-opacity: 1;
+    -fx-background-color: rgba(42, 79, 139,1);
+    -fx-effect: dropshadow(gaussian, rgba(42, 79, 139,0.1), 10, 0.5, 1, 1);
+    -fx-text-fill: white;
+}
+.text-field {
+-fx-border-color: rgba(42, 79, 139,1);
+-fx-background-color: rgb(224, 242, 249);
+-fx-border-width: 3.5px;
+-fx-text-fill: rgba(42, 79, 139, 1);
+-fx-font-weight: bold;
+-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0.5, 1, 1);
+-fx-pref-width:260px;
+-fx-pref-height:100px;
+-fx-font-size: 24px;
+-fx-opacity: 0.8;
+}
+.button:pressed {
+-fx-opacity: 0.6;
+-fx-border-color: rgba(42, 79, 139,0.1);
+
+}
+
+.root {
+    -fx-font-family: "Monospaced";
+}
+.player-pane {
+    -fx-background-color: rgb(224, 242, 249);
+    -fx-opacity: 0.8;
+    -fx-border-color: rgba(42, 79, 139, 1);
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 200px;
+    -fx-padding: 10px 50px;
+}
+.player-pane: hover {
+    -fx-background-color: orange;
+    -fx-border-color: orange;
+
+}
+.player-pane: pressed {
+  -fx-opacity: 0.6;
+}
