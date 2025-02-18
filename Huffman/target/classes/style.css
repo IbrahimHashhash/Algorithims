@@ -1,0 +1,57 @@
+.button {
+-fx-background-color: orange;
+-fx-padding: 13px;
+-fx-border-radius: 50px;
+-fx-background-radius: 50px;
+ -fx-font-family: Monospaced;
+-fx-font-size: 14px;
+-fx-text-fill: white;
+-fx-font-weight: 900;
+-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0.5, 1, 1);
+
+}
+.button: hover {
+-fx-opacity: 0.7;
+}
+.button: pressed {
+-fx-opacity: 0.5;
+}
+.borderpane {
+-fx-background-color: deepSkyBlue;
+}
+.text-area {
+    -fx-text-fill: black;
+    -fx-control-inner-background: white;
+    -fx-font-size: 16px;
+    -fx-font-family: Arial;
+
+    -fx-text-alignment: center;
+}
+.text-area .scroll-bar {
+    -fx-background-color: transparent; /* Optional: Set scrollbar background */
+}
+
+.text-area .scroll-bar .thumb {
+    -fx-background-color: orange; /* Set the thumb color to orange */
+    -fx-background-radius: 5px; /* Optional: Rounded corners */
+}
+
+.text-area .scroll-bar .increment-button,
+.text-area .scroll-bar .decrement-button {
+    -fx-background-color: orange; /* Style the buttons if needed */
+        -fx-background-radius: 5px; /* Optional: Rounded corners */
+
+}
+
+.text-area .scroll-bar:hover .thumb {
+    -fx-background-color: darkorange; /* Change color on hover for effect */
+}
+.stat {
+-fx-background-color: orange;
+-fx-background-radius: 50px;
+ -fx-font-family: Monospaced;
+
+-fx-border-radius: 50px;
+-fx-padding: 10px;
+-fx-font-size: 14px;
+}

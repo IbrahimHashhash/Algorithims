@@ -17,37 +17,27 @@ public class TwoPlayer extends VBox {
             "-fx-border-color: rgba(42, 79, 139,1); -fx-border-radius: 10px; " +
             "-fx-background-radius: 10px; -fx-pref-width: 200px; " +
             "-fx-pref-height: 200px; -fx-padding: 10px 50px;";
-    private static final String COIN_SELECTED_STYLE = "-fx-background-color: rgb(197, 158, 1); -fx-border-color: yellow; -fx-text-fill: white;";
+    private static final String COIN_SELECTED_STYLE1 = "-fx-background-color: #FF6347; -fx-border-color: #FFC1C1; -fx-text-fill: white;";private static final String COIN_SELECTED_STYLE2 = "-fx-background-color: #32CD32; -fx-border-color: #90EE90; -fx-text-fill: white;";private static final String COIN_SELECTED_STYLE11 = "-fx-background-color: #FF6347; -fx-border-color: #FFC1C1; -fx-text-fill: white; -fx-font-size: 14px; -fx-pref-height: 40px; -fx-pref-width: 40px;";private static final String COIN_SELECTED_STYLE22 = "-fx-background-color: #32CD32; -fx-border-color: #90EE90; -fx-text-fill: white; -fx-font-size: 14px; -fx-pref-height: 40px; -fx-pref-width: 40px;";
+    private final Root root = Main.getStartPane();
+    private final Player p1; private final Player p2;
+    private int turn; private static int start, end;
+    private final Coin[] coins;private final FlowPane coinBox;
+    private final PlayerPane playerPane1 = new PlayerPane("player1");private final PlayerPane playerPane2 = new PlayerPane("player2");
+    private final FlowPane scoreContainer;private int counter = 0;private final GameInfo gameInfo;private final FlowPane player1Coins = CustomLayOuts.fBox();
+    private final FlowPane player2Coins = CustomLayOuts.fBox();
 
-    Root root = Main.getStartPane();
-    Player p1;
-    Player p2;
-    int turn;
-    int picked;
-    private static int start, end;
-    private final Coin[] coins;
-    private final FlowPane coinBox;
-    PlayerPane playerPane1 = new PlayerPane("player1");
-    PlayerPane playerPane2 = new PlayerPane("player2");
-    FlowPane scoreContainer;
-    int counter = 0;
-    GameInfo gameInfo;
-    MenuPane menuPane;
 
     public TwoPlayer(FlowPane coinBox, String name1, String name2, int picked) {
-        this.picked = picked;
         this.gameInfo = new GameInfo(coinBox, root, name1, name2, picked);
-        menuPane = new MenuPane(gameInfo);
+        MenuPane menuPane = new MenuPane(gameInfo);
         scoreContainer = new FlowPane();
         scoreContainer.setAlignment(Pos.CENTER);
         scoreContainer.setHgap(20); // Spacing between elements
         FlowPane.setMargin(playerPane1, new Insets(20, 20, 20, 20));
         FlowPane.setMargin(playerPane2, new Insets(20, 20, 20, 20));
-        scoreContainer.getChildren().addAll(playerPane1, menuPane, playerPane2);
+        scoreContainer.getChildren().addAll(player1Coins, playerPane1, menuPane, playerPane2, player2Coins);
         root.setTop(scoreContainer);
         this.setAlignment(Pos.CENTER);
-        this.root = root;
-
         turn = picked; // Set initial turn based on 'picked': 0 for Player 1, 1 for Player 2
         p1 = new Player(name1);
         p2 = new Player(name2);
@@ -59,12 +49,12 @@ public class TwoPlayer extends VBox {
         // Apply initial active style to the starting player
         if (turn % 2 == 0) {
             // Player 1 starts
-            scoreContainer.getChildren().get(2).setStyle(PLAYER_ACTIVE_STYLE);
-            scoreContainer.getChildren().get(0).setStyle(PLAYER_INACTIVE_STYLE);
+            scoreContainer.getChildren().get(3).setStyle(PLAYER_ACTIVE_STYLE);
+            scoreContainer.getChildren().get(1).setStyle(PLAYER_INACTIVE_STYLE);
         } else {
             // Player 2 starts
-            scoreContainer.getChildren().get(0).setStyle(PLAYER_ACTIVE_STYLE);
-            scoreContainer.getChildren().get(2).setStyle(PLAYER_INACTIVE_STYLE);
+            scoreContainer.getChildren().get(1).setStyle(PLAYER_ACTIVE_STYLE);
+            scoreContainer.getChildren().get(3).setStyle(PLAYER_INACTIVE_STYLE);
         }
 
         play();
@@ -72,9 +62,9 @@ public class TwoPlayer extends VBox {
 
     // Initialize the coins and coinBox
     public Coin[] initializeArray(FlowPane flowPane) {
-        Coin[] coins = new Coin[flowPane.getChildren().size()];
+        Coin[] coins = new Coin[ flowPane.getChildren().size() ];
         for (int i = 0; i < flowPane.getChildren().size(); i++) {
-            coins[i] = new Coin(((CoinLabel) flowPane.getChildren().get(i)).getText());
+            coins[ i ] = new Coin(((CoinLabel) flowPane.getChildren().get(i)).getText());
         }
         return coins;
     }
@@ -105,18 +95,33 @@ public class TwoPlayer extends VBox {
     private void handleClick(int index) {
         int coinValue = ((Coin) coinBox.getChildren().get(index)).getValue();
         ((Coin) coinBox.getChildren().get(index)).getCoinLabel().setDisable(true);
-        ((Coin) coinBox.getChildren().get(index)).getCoinLabel().setStyle(COIN_SELECTED_STYLE);
+
 
         if (turn % 2 == 0) {
+            ((Coin) coinBox.getChildren().get(index)).getCoinLabel().setStyle(COIN_SELECTED_STYLE1);
             p1.sum(coinValue);
             playerPane1.setScore(p1.getSum());
-            scoreContainer.getChildren().get(2).setStyle(PLAYER_INACTIVE_STYLE);
-            scoreContainer.getChildren().get(0).setStyle(PLAYER_ACTIVE_STYLE);
+            scoreContainer.getChildren().get(3).setStyle(PLAYER_INACTIVE_STYLE);
+            scoreContainer.getChildren().get(1).setStyle(PLAYER_ACTIVE_STYLE);
+            player1Coins.getChildren().add(pickedCoin(coinValue));
         } else {
+            ((Coin) coinBox.getChildren().get(index)).getCoinLabel().setStyle(COIN_SELECTED_STYLE2);
             p2.sum(coinValue);
             playerPane2.setScore(p2.getSum());
-            scoreContainer.getChildren().get(0).setStyle(PLAYER_INACTIVE_STYLE);
-            scoreContainer.getChildren().get(2).setStyle(PLAYER_ACTIVE_STYLE);
+            scoreContainer.getChildren().get(1).setStyle(PLAYER_INACTIVE_STYLE);
+            scoreContainer.getChildren().get(3).setStyle(PLAYER_ACTIVE_STYLE);
+            player2Coins.getChildren().add(pickedCoin(coinValue));
+        }
+    }
+
+    public CoinLabel pickedCoin(int coin) {
+        Coin coin1 = new Coin(coin + "");
+        if (turn % 2 == 0) {
+            coin1.getCoinLabel().setStyle(COIN_SELECTED_STYLE11);
+            return coin1.getCoinLabel();
+        } else {
+            coin1.getCoinLabel().setStyle(COIN_SELECTED_STYLE22);
+            return coin1.getCoinLabel();
         }
     }
 

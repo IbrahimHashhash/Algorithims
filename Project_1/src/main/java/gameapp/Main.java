@@ -9,11 +9,15 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setScene(mainMenu.getScene());
-        mainMenu.setupExitButton(primaryStage);
-        mainMenu.getScene().getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
-        primaryStage.show();
-        primaryStage.setMaximized(true);
+        try {
+            primaryStage.setScene(mainMenu.getScene());
+            mainMenu.setupExitButton(primaryStage);
+            mainMenu.getScene().getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+            primaryStage.show();
+            primaryStage.setMaximized(true);
+        }catch (Exception ex){
+            System.out.println(ex + "");
+        }
     }
 
     public static Root getStartPane() {

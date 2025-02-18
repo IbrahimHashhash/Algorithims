@@ -80,12 +80,29 @@ public class CoinLabel extends Label {
     private Button createEditButton(TextField tf, Stage stage) {
         Button edit = new Button("Edit");
         edit.setOnAction(event -> {
-            updateLabelText(tf.getText());
-            stage.close();
+            if(tf.getText().length() <= 4 && isDigit(tf.getText())) {
+                updateLabelText(tf.getText());
+                stage.close();
+            }else if(tf.getText().length()>4){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("You are only allowed to type 4 digits");
+                alert.show();
+            }else if(!isDigit(tf.getText())){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("You are only allowed to enter numerical values");
+                alert.show();
+            }
         });
         return edit;
     }
-
+    private boolean isDigit(String string){
+        try{
+            int n = Integer.parseInt(string);
+            return true;
+        }catch (NumberFormatException ex){
+            return false;
+        }
+    }
     private Button createDeleteButton(Stage stage) {
         Button del = new Button("Delete");
         del.setOnAction(event -> {

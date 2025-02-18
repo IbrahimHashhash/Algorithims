@@ -19,12 +19,12 @@ public class Root extends BorderPane {
 
     public void start(){
         title.setText("Select Game Mode");
-        Button btn1 = new Button("2 Player");
-        Button btn2 = new Button("Vs Bot");
+        Button twoPlayer = new Button("2 Player");
+        Button Bot = new Button("Vs Bot");
         vBox.getChildren().clear();
-        vBox.getChildren().addAll(title,btn1,btn2,back);
-        btn1.setOnAction(e-> Mode.turns(0));
-        btn2.setOnAction(e-> Mode.turns(1));
+        vBox.getChildren().addAll(title,twoPlayer,Bot,back);
+        twoPlayer.setOnAction(e-> Mode.turns(0));
+        Bot.setOnAction(e-> Mode.turns(1));
         back.setOnAction(e->setMainMenu());
     }
     public void help(){

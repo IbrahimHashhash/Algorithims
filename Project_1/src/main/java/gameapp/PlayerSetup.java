@@ -8,7 +8,6 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 public class PlayerSetup extends VBox {
     PlayerPane p1 = new PlayerPane("player1");
